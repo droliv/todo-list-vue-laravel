@@ -2,8 +2,13 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-Vue.component('home', require('./components/Home.vue').default);
+let home = require('./components/Home.vue').default;
+let container = require('./components/TasksContainer.vue').default;
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components:{
+        'home-component':home,
+        'tasks-container':container
+    }
 });
