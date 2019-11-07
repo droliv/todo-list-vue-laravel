@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $result = Task::all();
-        return response($result, 200);
+        $tasks = Task::all();
+        return response()->json($tasks, 200);
     }
 
     /**
@@ -36,7 +37,16 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $validator = Validator::make($input,[
+            'title'=>'required',
+            'description' => 'required'
+        ]);
+        if($validator->fails()){
+            return response()->json('verifique os campos', 500);
+        }
+        $task = Task::create($input);
+        return response()->json($task, 200);
     }
 
     /**
@@ -45,9 +55,13 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show($id)
     {
-        //
+        $task = Task::find($id);
+        if(is_null($task)){
+            return response()->json('Task not found', 404);
+        }
+        return response()->json($task, 200);
     }
 
     /**
@@ -68,9 +82,25 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, $id)
     {
-        //
+        $task = Task::find($id);
+        if(is_null($task)){
+            return response()->json('Task not found', 404);
+        }
+        $input = $request->all();
+        $validator = Validator::make($input,[
+            'title'=>'required',
+            'description' => 'required'
+        ]);
+        if($validator->fails()){
+            return response()->json('verifique os campos', 500);
+        }
+        $task->title = $input['title'];
+        $task->description = $input['description'];
+        $task->status = $input['status'];
+        $task->update();
+        return response()->json($task, 200);
     }
 
     /**
@@ -79,8 +109,13 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy($id)
     {
-        //
+        $task = Task::find($id);
+        if(is_null($task)){
+            return response()->json('Task not found', 404);
+        }
+        $task->delete();
+        return response()->json('task deletada', 200);
     }
 }
