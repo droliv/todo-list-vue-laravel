@@ -5,5 +5,7 @@
 <li>Executar o comando "php artisan key:generate" para gerar a chave da aplicação</li>
 <li>copiar o arquivo .env.example e renomear para .env</li>
 <li>Executar "php artisan migrate" para criar a tabela no banco de dados</li>
+<li>Executar "npm install" para instalar as dependencias do package.json"
+<li>Executar "npm run watch" para rodar o vue.js</li>
 <li>Executar "php artisan serve" para subir o servidor da aplicação</li>
 </ol>
