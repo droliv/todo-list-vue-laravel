@@ -1,4 +1,5 @@
 <template>
+<div class="col-sm-4">
     <div class="card">
         <div class="card-header">
             Featured
@@ -9,9 +10,8 @@
             <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
-    
+</div>
 </template>
-
 <script>
-    
 </script>
+    
