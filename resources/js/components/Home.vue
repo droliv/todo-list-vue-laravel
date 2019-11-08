@@ -10,9 +10,9 @@
       <FormTask></FormTask>
     </div>
     <div class="row">
-      <TasksContainer></TasksContainer>
-      <TasksContainer></TasksContainer>
-      <TasksContainer></TasksContainer>
+      <TasksContainer status="todo"></TasksContainer>
+      <TasksContainer status="doing"></TasksContainer>
+      <TasksContainer status="done"></TasksContainer>
     </div>
 </div>
 </template>
@@ -27,3 +27,6 @@ export default {
   }
 }
 </script>
+<style scoped>
+
+</style>

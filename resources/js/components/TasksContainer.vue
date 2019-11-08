@@ -2,7 +2,7 @@
 <div class="col-sm-4">
     <div class="card">
         <div class="card-header">
-            Featured
+            {{status}}
         </div>
         <div class="card-body">
             <h5 class="card-title">Special title treatment</h5>
@@ -13,5 +13,15 @@
 </div>
 </template>
 <script>
+export default {
+  props: ['status'],
+  methods:{
+
+  }
+}
 </script>
-    
+<style scoped>
+    .card-header{
+      text-transform: capitalize;  
+    }
+</style>   
