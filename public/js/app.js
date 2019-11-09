@@ -1873,7 +1873,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1899,6 +1898,7 @@ __webpack_require__.r(__webpack_exports__);
         description: this.description
       }, headers).then(function (response) {
         _this.sucess = "Tarefa cadastrada com sucesso";
+        $('#formTask').trigger("reset");
       })["catch"](function (error) {
         _this.erro = "Erro ao cadastrar tarefa!";
       });
@@ -1938,12 +1938,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      tasks: [],
+      tasksTodo: [],
+      tasksDoing: [],
+      tasksDone: []
+    };
+  },
   components: {
     TasksContainer: _TasksContainer_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     FormTask: _FormTask_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get("http://localhost:8000/api/tasks").then(function (response) {
+      _this.tasks = response.data;
+
+      _this.listarTasks();
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  },
+  methods: {
+    listarTasks: function listarTasks() {
+      for (var i = 0; i < this.tasks.length; i++) {
+        if (this.tasks[i].status == "todo") {
+          this.tasksTodo.push(this.tasks[i]);
+        } else if (this.tasks[i].status == "doing") {
+          this.tasksDoing.push(this.tasks[i]);
+        } else if (this.tasks[i].status == "done") {
+          this.tasksDone.push(this.tasks[i]);
+        }
+      }
+    }
   }
 });
 
@@ -1972,8 +2012,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['status'],
+  props: ['status', 'tasks'],
   methods: {}
 });
 
@@ -1991,7 +2032,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card-header[data-v-705c0b84]{\n  text-transform: capitalize;\n}\n", ""]);
+exports.push([module.i, "\n.card-header[data-v-705c0b84] {\n  text-transform: capitalize;\n}\n", ""]);
 
 // exports
 
@@ -20253,7 +20294,7 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "modal-body" }, [
-          _c("form", [
+          _c("form", { attrs: { id: "formTask" } }, [
             _c("div", { staticClass: "form-group" }, [
               _c("label", { attrs: { for: "inputTitle" } }, [
                 _vm._v("Titulo:")
@@ -20350,7 +20391,7 @@ var render = function() {
           ? _c(
               "div",
               { staticClass: "alert alert-success", attrs: { role: "alert" } },
-              [_vm._v("\n        " + _vm._s(_vm.sucess) + "\n      ")]
+              [_vm._v("\n            " + _vm._s(_vm.sucess) + "\n        ")]
             )
           : _vm._e(),
         _vm._v(" "),
@@ -20358,7 +20399,7 @@ var render = function() {
           ? _c(
               "div",
               { staticClass: "alert alert-danger", attrs: { role: "alert" } },
-              [_vm._v("\n        " + _vm._s(_vm.erro) + "\n      ")]
+              [_vm._v("\n            " + _vm._s(_vm.erro) + "\n        ")]
             )
           : _vm._e()
       ])
@@ -20436,11 +20477,17 @@ var render = function() {
       "div",
       { staticClass: "row" },
       [
-        _c("TasksContainer", { attrs: { status: "todo" } }),
+        _c("TasksContainer", {
+          attrs: { status: "todo", tasks: _vm.tasksTodo }
+        }),
         _vm._v(" "),
-        _c("TasksContainer", { attrs: { status: "doing" } }),
+        _c("TasksContainer", {
+          attrs: { status: "doing", tasks: _vm.tasksDoing }
+        }),
         _vm._v(" "),
-        _c("TasksContainer", { attrs: { status: "done" } })
+        _c("TasksContainer", {
+          attrs: { status: "done", tasks: _vm.tasksDone }
+        })
       ],
       1
     )
@@ -20464,7 +20511,7 @@ var staticRenderFns = [
             staticClass: "material-icons",
             staticStyle: { color: "blue", "font-size": "48px" }
           },
-          [_vm._v("\r\n        add_circle\r\n      ")]
+          [_vm._v("add_circle")]
         )
       ]
     )
@@ -20493,36 +20540,34 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-sm-4" }, [
     _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-header" }, [
-        _vm._v("\r\n            " + _vm._s(_vm.status) + "\r\n        ")
-      ]),
+      _c("div", { staticClass: "card-header" }, [_vm._v(_vm._s(_vm.status))]),
       _vm._v(" "),
-      _vm._m(0)
+      _c(
+        "div",
+        { staticClass: "card-body" },
+        [
+          _c("h5", { staticClass: "card-title" }, [
+            _vm._v("Special title treatment")
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.tasks, function(task) {
+            return _c("div", [
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v(_vm._s(task.description))
+              ])
+            ])
+          }),
+          _vm._v(" "),
+          _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
+            _vm._v("Go somewhere")
+          ])
+        ],
+        2
+      )
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body" }, [
-      _c("h5", { staticClass: "card-title" }, [
-        _vm._v("Special title treatment")
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "card-text" }, [
-        _vm._v(
-          "With supporting text below as a natural lead-in to additional content."
-        )
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
-        _vm._v("Go somewhere")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -32863,15 +32908,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************************!*\
   !*** ./resources/js/components/TasksContainer.vue ***!
   \****************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TasksContainer_vue_vue_type_template_id_705c0b84_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TasksContainer.vue?vue&type=template&id=705c0b84&scoped=true& */ "./resources/js/components/TasksContainer.vue?vue&type=template&id=705c0b84&scoped=true&");
 /* harmony import */ var _TasksContainer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TasksContainer.vue?vue&type=script&lang=js& */ "./resources/js/components/TasksContainer.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _TasksContainer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _TasksContainer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _TasksContainer_vue_vue_type_style_index_0_id_705c0b84_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TasksContainer.vue?vue&type=style&index=0&id=705c0b84&scoped=true&lang=css& */ "./resources/js/components/TasksContainer.vue?vue&type=style&index=0&id=705c0b84&scoped=true&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _TasksContainer_vue_vue_type_style_index_0_id_705c0b84_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TasksContainer.vue?vue&type=style&index=0&id=705c0b84&scoped=true&lang=css& */ "./resources/js/components/TasksContainer.vue?vue&type=style&index=0&id=705c0b84&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -32903,7 +32947,7 @@ component.options.__file = "resources/js/components/TasksContainer.vue"
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/TasksContainer.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32965,8 +33009,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\danieleo\Documents\docs\todolist\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\danieleo\Documents\docs\todolist\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Daniele\Documents\workspace-php\todo-list-inbraep\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Daniele\Documents\workspace-php\todo-list-inbraep\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

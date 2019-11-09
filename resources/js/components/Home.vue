@@ -1,32 +1,71 @@
 <template>
-<div>
+  <div>
     <button class="btn" data-toggle="modal" data-target="#exampleModal">
-      <i class="material-icons" style="color:blue;font-size: 48px">
-        add_circle
-      </i>
+      <i class="material-icons" style="color:blue;font-size: 48px">add_circle</i>
     </button>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
       <FormTask></FormTask>
     </div>
+
     <div class="row">
-      <TasksContainer status="todo"></TasksContainer>
-      <TasksContainer status="doing"></TasksContainer>
-      <TasksContainer status="done"></TasksContainer>
+      <TasksContainer status="todo" :tasks="tasksTodo"></TasksContainer>
+
+      <TasksContainer status="doing" :tasks="tasksDoing"></TasksContainer>
+
+      <TasksContainer status="done" :tasks="tasksDone"></TasksContainer>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
-import TasksContainer from './TasksContainer.vue';
-import FormTask from './FormTask.vue';
+import TasksContainer from "./TasksContainer.vue";
+import FormTask from "./FormTask.vue";
 export default {
+  data() {
+    return {
+      tasks: [],
+      tasksTodo: [],
+      tasksDoing: [],
+      tasksDone: []
+    };
+  },
   components: {
     TasksContainer,
     FormTask
+  },
+  mounted() {
+    axios
+      .get("http://localhost:8000/api/tasks")
+      .then(response => {
+        this.tasks = response.data;
+        this.listarTasks();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  },
+  methods: {
+    listarTasks() {
+      for (let i = 0; i < this.tasks.length; i++) {
+        if (this.tasks[i].status == "todo") {
+          this.tasksTodo.push(this.tasks[i]);
+        } else if (this.tasks[i].status == "doing") {
+          this.tasksDoing.push(this.tasks[i]);
+        } else if (this.tasks[i].status == "done") {
+          this.tasksDone.push(this.tasks[i]);
+        }
+      }
+    }
   }
-}
+};
 </script>
 <style scoped>
-
 </style>
