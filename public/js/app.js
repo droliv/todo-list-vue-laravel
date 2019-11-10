@@ -20802,7 +20802,7 @@ var render = function() {
                       attrs: { title: "Deletar Tarefa" },
                       on: {
                         click: function($event) {
-                          return _vm.deleta(task)
+                          return _vm.deleta(task.id)
                         }
                       }
                     },

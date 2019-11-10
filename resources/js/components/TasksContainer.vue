@@ -21,7 +21,7 @@
                 </a>
               </div>
               <div class="col-sm-4">
-                <a class="text-danger" title="Deletar Tarefa" v-on:click="deleta(task)">
+                <a class="text-danger" title="Deletar Tarefa" v-on:click="deleta(task.id)">
                   <i class="material-icons">delete</i>
                 </a>
               </div>
