@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button class="btn" data-toggle="modal" data-target="#exampleModal">
-      <i class="material-icons" style="color:blue;font-size: 48px">add_circle</i>
+    <button title="Criar nova tarefa" class="btn btn-primary circle" data-toggle="modal" data-target="#exampleModal">
+      <i class="material-icons">add</i>
     </button>
 
     <div
@@ -68,4 +68,14 @@ export default {
 };
 </script>
 <style scoped>
+.circle {
+  border-radius: 50%;
+  font-size: 38px;
+  height: 50px;
+  width: 50px;
+  margin: 20px;
+}
+.circle i {
+  display: block;
+}
 </style>

@@ -19,6 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/tasks', 'TaskController@index');
 Route::get('/tasks/{id}', 'TaskController@show');
-Route::delete('/tasks/{id}', 'TaskController@destroy');
+Route::delete('/tasks/{id}', 'TaskController@destroy')->middleware('cors');;
 Route::post('/tasks', 'TaskController@store')->middleware('cors');
-Route::put('/tasks/{id}', 'TaskController@update');
+Route::put('/tasks/{id}', 'TaskController@update')->middleware('cors');;
