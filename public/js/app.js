@@ -2120,7 +2120,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.circle[data-v-f2b6376c] {\n  border-radius: 50%;\n  font-size: 38px;\n  height: 50px;\n  width: 50px;\n  margin: 20px;\n}\n.circle i[data-v-f2b6376c] {\n  display: block;\n}\n", ""]);
+exports.push([module.i, "\n.circle[data-v-f2b6376c] {\r\n  border-radius: 50%;\r\n  font-size: 38px;\r\n  height: 50px;\r\n  width: 50px;\r\n  margin: 20px;\n}\n.circle i[data-v-f2b6376c] {\r\n  display: block;\n}\r\n", ""]);
 
 // exports
 
@@ -2139,7 +2139,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card-header[data-v-705c0b84] {\n  text-transform: capitalize;\n  color: aliceblue;\n}\n.bg-tasks[data-v-705c0b84]{\n    background-color: darkgray;\n}\n.task[data-v-705c0b84] {\n  margin: 20px 10px;\n  box-shadow: 1px 2px 2px grey;\n}\ninput[data-v-705c0b84],\ntextarea[data-v-705c0b84],\nselect[data-v-705c0b84] {\n  box-shadow: 0 0 0 0;\n  border: 0 none;\n  outline: 0;\n}\na[data-v-705c0b84]:hover {\n  cursor: pointer;\n}\n.title[data-v-705c0b84] {\n  font-size: 30px;\n  max-width: 100%;\n}\n", ""]);
+exports.push([module.i, "\n.card-header[data-v-705c0b84] {\r\n  text-transform: capitalize;\r\n  color: aliceblue;\n}\n.bg-tasks[data-v-705c0b84]{\r\n    background-color: darkgray;\n}\n.task[data-v-705c0b84] {\r\n  margin: 20px 10px;\r\n  box-shadow: 1px 2px 2px grey;\n}\ninput[data-v-705c0b84],\r\ntextarea[data-v-705c0b84],\r\nselect[data-v-705c0b84] {\r\n  box-shadow: 0 0 0 0;\r\n  border: 0 none;\r\n  outline: 0;\n}\na[data-v-705c0b84]:hover {\r\n  cursor: pointer;\n}\n.title[data-v-705c0b84] {\r\n  font-size: 30px;\r\n  max-width: 100%;\n}\r\n", ""]);
 
 // exports
 
@@ -33282,8 +33282,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Daniele\Documents\workspace-php\todo-list-inbraep\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Daniele\Documents\workspace-php\todo-list-inbraep\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\danieleo\Documents\docs\todo-list-inbraep\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\danieleo\Documents\docs\todo-list-inbraep\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
